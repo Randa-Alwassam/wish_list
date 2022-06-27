@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Create Item</title>
+<!-- url: wish_items/create -->
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5 ">
+    <div class="mx-auto" style="width: 1000px;">
+
+        {% for message in messages %}
+        {% if message.tags == "error" %}
+        <div class="alert alert-danger">{{ message}}</div>
+        {% else %}
+        <div class="alert alert-{{ message.tags }}">{{ message}}</div>
+        {% endif %}
+        {% endfor %}
+
+        <div class="row ">
+            <div class="col mb-3">
+                <h2>Create a New Wish List Item</h2>
+            </div>
+            <div class="col"></div>
+            <form action="/wish_items/create" method="post">
+                <label for="item">Item/Product</label>
+                <input id="item" name="item" type="text">
+                <input type="submit" value="Add">
+                {% csrf_token %}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

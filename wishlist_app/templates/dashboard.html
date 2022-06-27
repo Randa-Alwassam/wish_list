@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+<!-- url: dashbord -->
+{% block head %} <title>Dashboard</title>{% endblock %}
+
+{% block body %}
+<!-- {% for message in messages %}
+        <div class="{{ message.tags }}">{{ message }}</div>
+    {% endfor %} -->
+<div class="container">
+    <h1> Hello, {{user.name}}!</h1>
+    <h3>Your Wish List:</h3>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr class="table-active">
+                <th scope="col">Item</th>
+                <th scope="col">Added by</th>
+                <th scope="col">Date Added</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in fav_items %}
+            <tr>
+                <td><a href='/wish_items/{{item.id}}'>{{item.name}}</a></td>
+                <td>{{item.creator.name}}</td>
+                <td>{{item.date_created}}</td>
+                <td><a href='/removeList/{{item.id}}'>Remove from my Wishlist</td>
+            </tr>
+            {% endfor %}
+            {% for item in user_items %}
+            <tr>
+                <td><a href='/wish_items/{{item.id}}'>{{item.name}}</a></td>
+                <td>{{item.creator.name}}</td>
+                <td>{{item.date_created}}</td>
+                <td><a href='/delete/{{item.id}}'>Delete</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Other Users' Wish List:</h3>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr class="table-active">
+                <th scope="col">Item</th>
+                <th scope="col">Added by</th>
+                <th scope="col">Date Added</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in others_items %}
+            <tr>
+                <td><a href="/wish_items/{{item.id}}">{{item.name}}</a></td>
+                <td>{{item.creator.name}}</td>
+                <td>{{item.date_created}}</td>
+                <td><a href="/addList/{{item.id}}">Add to my Wishlist</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock %}

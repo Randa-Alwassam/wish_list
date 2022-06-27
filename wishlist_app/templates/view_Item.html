@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>{{item.name}}</title>
+<!-- url: wish_items/item-id -->
+{% endblock %}
+
+{% block body %}
+<div class="continer mt-4">
+
+    <div  class="mx-auto text-center" style="width: 500px;">
+        <h1>{{item.name}}</h1>
+
+        <p>Users who added this product/item under their Wishlist:</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"">{{item.creator.name}}</li>
+            {% for user in fav_users %}
+            <li class="list-group-item"">{{user.name}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+</div>
+{% endblock %}
